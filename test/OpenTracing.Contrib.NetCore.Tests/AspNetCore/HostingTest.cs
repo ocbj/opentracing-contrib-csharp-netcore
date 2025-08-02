@@ -102,7 +102,12 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
             var client = CreateClient();
 
             await client.GetAsync("/foo");
-            
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
+
             var finishedSpans = _tracer.FinishedSpans();
 
             Assert.Single(finishedSpans);
@@ -114,6 +119,11 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
             var client = CreateClient();
 
             await client.GetAsync("/foo");
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
 
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
@@ -143,6 +153,11 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
 
             await client.GetAsync("/not-found");
 
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
+
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
 
@@ -163,6 +178,11 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
                     { "spanid", "101" },
                 }
             });
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
 
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
@@ -192,6 +212,11 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
 
             _options.ExtractEnabled = context => !context.Request.Headers.ContainsKey("ignore");
 
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
+
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
 
@@ -214,6 +239,12 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
                 }
             });
 
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
+
             Assert.Empty(_tracer.FinishedSpans());
         }
 
@@ -224,6 +255,11 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
 
             var client = CreateClient();
             await client.GetAsync("/foo");
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
 
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
@@ -276,6 +312,12 @@ namespace OpenTracing.Contrib.NetCore.Tests.AspNetCore
             catch (InvalidOperationException)
             {
             }
+
+
+            // A temporary workaround, seems like it's just a bug in test code?
+            // net8/net9 perf is better, exposing the bug.
+            // https://github.com/opentracing-contrib/csharp-netcore/pull/104/files#r1410610463
+            await Task.Delay(100);
 
             var finishedSpans = _tracer.FinishedSpans();
             Assert.Single(finishedSpans);
