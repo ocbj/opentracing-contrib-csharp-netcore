@@ -1,68 +1,79 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
-    <Description>Adds OpenTracing instrumentation for .NET Core apps that use the `Microsoft.Extensions.*` stack.
-Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core and any other library that uses DiagnosticSource events.</Description>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <!-- Not expecting this fork to change much, so manually updating version is fine -->
+    <Version>1.0.0</Version>
+    <PackageVersion>1.0.0-beta</PackageVersion>
+    <Description>
+      Adds OpenTracing instrumentation for .NET Core apps that use the `Microsoft.Extensions.*` stack.
+      Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core and any other library that uses DiagnosticSource events.
+    </Description>
     <PackageTags>opentracing;distributed-tracing;tracing;netcore</PackageTags>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>true</IsPackable>
+    <Authors>Christian Weiss; Billy O'Connor</Authors>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageIconUrl>https://avatars0.githubusercontent.com/u/15482765</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ocbj/opentracing-contrib-csharp-netcore</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReleaseNotes Condition="'$(Version)' != ''">https://github.com/ocbj/opentracing-contrib-csharp-netcore/releases/tag/v$(Version)</PackageReleaseNotes>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- SourceLink support -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../SignKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDir)/package-icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <PackageReference Include="OpenTracing" Version="0.12.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework)=='netcoreapp3.1'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework)=='netcoreapp3.1'">
+
+  <ItemGroup Condition="$(TargetFramework)=='net8.0'">
     <!-- Main dependencies -->
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[3.1.8,4)" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[3.1.8,4)" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="[3.1.8,4)" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="[3.1.8,4)" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.7.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[8.0.0,9)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[8.0.0,9)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="[8.0.0,9)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="[8.0.0,9)" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="[8.0.0,9)" />
     <!-- Instrumented libraries (which are not visible as actual dependencies) -->
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.4" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[3.1.8,4)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[3.1.8,4)" PrivateAssets="All" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[8.0.0,9)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[8.0.0,9)" PrivateAssets="All" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework)=='net6.0'">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
 
-   <ItemGroup Condition="$(TargetFramework)=='net6.0'">
+  <ItemGroup Condition="$(TargetFramework)=='net9.0'">
     <!-- Main dependencies -->
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.0.0,7)" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[6.0.0,7)" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="[6.0.0,7)" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="[6.0.0,7)" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[9.0.0,10)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[9.0.0,10)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="[9.0.0,10)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="[9.0.0,10)" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="[9.0.0,10)" />
     <!-- Instrumented libraries (which are not visible as actual dependencies) -->
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.4" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[6.0.0,7)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[6.0.0,7)" PrivateAssets="All" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework)=='net7.0'">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-   <ItemGroup Condition="$(TargetFramework)=='net7.0'">
-    <!-- Main dependencies -->
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="[7.0.0,8)" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="7.0.0" />
-    <!-- Instrumented libraries (which are not visible as actual dependencies) -->
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[7.0.0,8)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[7.0.0,8)" PrivateAssets="All" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[9.0.0,10)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[9.0.0,10)" PrivateAssets="All" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
