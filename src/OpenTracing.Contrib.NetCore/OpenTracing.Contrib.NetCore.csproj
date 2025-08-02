@@ -2,10 +2,40 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <Description>Adds OpenTracing instrumentation for .NET Core apps that use the `Microsoft.Extensions.*` stack.
-Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core and any other library that uses DiagnosticSource events.</Description>
+    <!-- Not expecting this fork to change much, so manually updating version is fine -->
+    <Version>1.0.0</Version>
+    <PackageVersion>1.0.0-beta</PackageVersion>
+    <Description>
+      Adds OpenTracing instrumentation for .NET Core apps that use the `Microsoft.Extensions.*` stack.
+      Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core and any other library that uses DiagnosticSource events.
+    </Description>
     <PackageTags>opentracing;distributed-tracing;tracing;netcore</PackageTags>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>true</IsPackable>
+    <Authors>Christian Weiss; Billy O'Connor</Authors>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageIconUrl>https://avatars0.githubusercontent.com/u/15482765</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ocbj/opentracing-contrib-csharp-netcore</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReleaseNotes Condition="'$(Version)' != ''">https://github.com/ocbj/opentracing-contrib-csharp-netcore/releases/tag/v$(Version)</PackageReleaseNotes>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- SourceLink support -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDir)/package-icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="OpenTracing" Version="0.12.1" />
@@ -13,7 +43,7 @@ Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core a
   </ItemGroup>
 
 
-   <ItemGroup Condition="$(TargetFramework)=='net8.0'">
+  <ItemGroup Condition="$(TargetFramework)=='net8.0'">
     <!-- Main dependencies -->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[8.0.0,9)" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="[8.0.0,9)" />
