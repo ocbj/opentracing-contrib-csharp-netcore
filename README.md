@@ -1,4 +1,4 @@
-[![nuget](https://img.shields.io/nuget/v/OpenTracing.Contrib.NetCore.svg?logo=nuget)](https://www.nuget.org/packages/OpenTracing.Contrib.NetCore)
+[![nuget](https://img.shields.io/nuget/v/Ocbj.OpenTracing.Contrib.NetCore.svg?logo=nuget)](https://www.nuget.org/packages/Ocbj.OpenTracing.Contrib.NetCore)
 
 # OpenTracing instrumentation for .NET Core apps
 
@@ -9,9 +9,7 @@ _**IMPORTANT:** OpenTracing and OpenCensus have merget to form **[OpenTelemetry]
 
 ## Supported .NET versions
 
-This project currently only supports apps targeting .NET Core 3.1, .NET 6.0, or .NET 7.0!
-
-This project DOES NOT support the full .NET framework as that uses different instrumentation code.
+This fork supports apps targeting .NET 8.0 and .NET 9.0
 
 ## Supported libraries and frameworks
 
