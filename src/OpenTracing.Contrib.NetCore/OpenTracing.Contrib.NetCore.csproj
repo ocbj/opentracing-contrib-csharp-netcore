@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Ocbj.OpenTracing.Contrib.NetCore</PackageId>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <!-- Not expecting this fork to change much, so manually updating version is fine -->
     <Version>1.0.0</Version>
@@ -15,6 +16,7 @@
     <IsPackable>true</IsPackable>
     <Authors>Christian Weiss; Billy O'Connor</Authors>
     <PackageIcon>package-icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/15482765</PackageIconUrl>
     <PackageProjectUrl>https://github.com/ocbj/opentracing-contrib-csharp-netcore</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -37,7 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(SolutionDir)/package-icon.png" Pack="true" PackagePath="" />
+    <None Include="package-icon.png" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="/"/>
   </ItemGroup>
 
 
