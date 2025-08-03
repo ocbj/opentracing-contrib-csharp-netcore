@@ -5,7 +5,7 @@
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <!-- Not expecting this fork to change much, so manually updating version is fine -->
     <Version>1.0.0</Version>
-    <PackageVersion>1.0.0-beta</PackageVersion>
+    <PackageVersion>$(Version)</PackageVersion>
     <Description>
       Adds OpenTracing instrumentation for .NET Core apps that use the `Microsoft.Extensions.*` stack.
       Instrumented components: HttpClient calls, ASP.NET Core, Entity Framework Core and any other library that uses DiagnosticSource events.
